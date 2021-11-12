@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 
-axios.defaults.baseURL = "https://mighty-taiga-43889.herokuapp.com/api";
+axios.defaults.baseURL = "https://mighty-taiga-43889.herokuapp.com/api/v1";
 
 const responseBody = <T>(response: AxiosResponse<T>) => response.data;
 
