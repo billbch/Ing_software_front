@@ -8,7 +8,6 @@ function BusinessRouter() {
   return (
     <React.Fragment>
       <Route exact path="/business/list" component={BusinessesList} />
-      //<Route exact path="/business/add" component={BusinessForm} />
       <Route exact path="/business/edit/:id" component={BusinessForm} />
       <Route exact path="/business/detail" component={BusinessesDetails} />
     </React.Fragment>
