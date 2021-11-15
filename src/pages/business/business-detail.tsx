@@ -16,15 +16,9 @@ function BussinessesDetails() {
   const [business, setBusiness] = useState<Business>(new Business());
   const { id } = useParams<{ id: string }>();
 
-  useEffect(() => {
-    if (id) {
-      apiBussinesses.detail(id).then((data) => {
-        setBusiness(data);
-        //setInitialLoading(false);
-      });
-    }
-  }, [id]);
-
+	apiBussinesses.detail(id).then((data) => {
+		setBusiness(data);
+	});
   return (
     <React.Fragment>
       <CustomBodyName>Mi Veterinaria</CustomBodyName>
