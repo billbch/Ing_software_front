@@ -65,13 +65,13 @@ export const secondaryListItems = (
     <ListItem
       button
       component={NavLink}
-      to={"/customers/add"} //to change
+      to={"business/list"} //to change
       activeClassName="Mui-selected"
     >
       <ListItemIcon>
         <AssignmentIcon />
       </ListItemIcon>
-      <ListItemText primary="Perfil Veterinaria" />
+      <ListItemText primary="Listar Veterinarias" />
     </ListItem>
 
     <ListItem
