@@ -1,4 +1,3 @@
-import * as React from "react";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
@@ -54,25 +53,25 @@ export const secondaryListItems = (
     <ListItem
       button
       component={NavLink}
-      to={"/customers/add"} //to change
+      to={"/pet/list"}
       activeClassName="Mui-selected"
     >
       <ListItemIcon>
         <AssignmentIcon />
       </ListItemIcon>
-      <ListItemText primary="Perfil de Mascota" />
+      <ListItemText primary="Listar Mascotas" /> 
     </ListItem>
 
     <ListItem
       button
       component={NavLink}
-      to={"/customers/add"} //to change
+      to={"business/list"} //to change
       activeClassName="Mui-selected"
     >
       <ListItemIcon>
         <AssignmentIcon />
       </ListItemIcon>
-      <ListItemText primary="Perfil Veterinaria" />
+      <ListItemText primary="Listar Veterinarias" />
     </ListItem>
 
     <ListItem
