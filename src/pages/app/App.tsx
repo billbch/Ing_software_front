@@ -1,4 +1,3 @@
-import React from "react";
 import { MuiThemeProvider } from "@material-ui/core";
 import themeMui from "../../themes/theme-mui";
 import Dashboard from "../../components/dashboard/dashboard";
@@ -8,6 +7,7 @@ import DashboardRouter from "./router/dashboard-router";
 import PersonprofileRouter from "./router/personprofile-route";
 import AppointmentRouter from "./router/appointment-route";
 import PetRouter from "./router/pet-router";
+import BusinessRouter from "./router/business-router";
 
 function App() {
   return (
@@ -18,6 +18,7 @@ function App() {
             <AppointmentRouter/>
             <CustomersRouter />
             <PetRouter />
+			<BusinessRouter />
             <PersonprofileRouter />
             <DashboardRouter />
           </Dashboard>

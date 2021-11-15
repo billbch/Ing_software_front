@@ -13,19 +13,19 @@ import {
   } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import apiPets from "../../api/api.pets";
+import apiBusinesses from "../../api/api.businesses";
 import Title from "../../components/dashboard/title";
-import { Pet } from "../../models/pet";
+import { Business } from "../../models/business";
   
-  function PetList() {
+  function BusinessList() {
     const [_a, setInitialLoading] = useState(true);
     const [_b, _c] = useState(false);
-    const [pets, setPets] = useState<Pet[]>([]);
+    const [businesss, setBusinesss] = useState<Business[]>([]);
     const [_e, _f] = useState("");
   
     useEffect(() => {
-        apiPets.list().then((data) => {
-        setPets(data);
+        apiBusinesses.list().then((data) => {
+        setBusinesss(data);
         setInitialLoading(false);
       });
     }, []);
@@ -85,24 +85,28 @@ import { Pet } from "../../models/pet";
                     <TableRow>
                       <TableCell>ID</TableCell>
                       <TableCell>Nombre</TableCell>
-                      <TableCell>Apellido</TableCell>
-                      <TableCell>Cliente</TableCell>
+                      <TableCell>Distrito</TableCell>
+                      <TableCell>Ciudad</TableCell>
+                      <TableCell>Direccion</TableCell>
+                      <TableCell>Score</TableCell>
                       <TableCell>Editar</TableCell>
                       <TableCell>Detalles</TableCell>
                       <TableCell>Eliminar</TableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {pets.map((pet) => (
-                      <TableRow key={pet.id}>
-                        <TableCell>{pet.id}</TableCell>
-                        <TableCell>{pet.name }</TableCell>
-                        <TableCell> {pet.lastName}</TableCell>
-                        <TableCell> {pet.personProfileId}</TableCell>
+                    {businesss.map((business) => (
+                      <TableRow key={business.id}>
+                      <TableCell>{business.id}</TableCell>
+                      <TableCell>{business.businessName}</TableCell>
+                      <TableCell>{business.district}</TableCell>
+                      <TableCell>{business.city}</TableCell>
+                      <TableCell>{business.address}</TableCell>
+                      <TableCell>{business.score}</TableCell>
                         <TableCell>
                           <Button
                             component={Link}
-                            to={`/pet/edit/${pet.id}`}
+                            to={`/business/edit/${business.id}`}
                             size={"small"}
                             variant="contained"
                             color="inherit"
@@ -117,7 +121,7 @@ import { Pet } from "../../models/pet";
                         <TableCell>
                           <Button
                             component={Link}
-                            to={`/pet/detail/${pet.id}`}
+                            to={`/business/detail/${business.id}`}
                             size={"small"}
                             variant="contained"
                             color="default"
@@ -154,14 +158,14 @@ import { Pet } from "../../models/pet";
         </Grid>
       </React.Fragment>
       /*<div>
-         {pets.map((pet) => (
-            <p key="{pet.petId}">
-              {pet.petName} - {pet.petDirection}
+         {businesss.map((business) => (
+            <p key="{business.businessId}">
+              {business.businessName} - {business.businessDirection}
             </p>
           ))}
         </div>*/
     );
   }
   
-  export default PetList;
+  export default BusinessList;
   

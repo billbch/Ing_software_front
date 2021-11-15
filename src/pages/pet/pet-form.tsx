@@ -7,8 +7,8 @@ import CustomTextField from "../../components/custom-text-field/custom-text-fiel
 import CustomMainForm from "../../components/form/custom-main-form";
 
 import { useHistory, useParams } from "react-router-dom";
-import apiPet from "../../api/api.pet";
-import { Pet } from "../../models/pet-form";
+import apiPets from "../../api/api.pets";
+import { Pet } from "../../models/pet";
 
 function PetForm() {
   const history = useHistory();
@@ -31,7 +31,7 @@ function PetForm() {
     event.preventDefault();
     if (id) {
       //setLoading(true);
-      apiPet.edit(pet).then(() => {
+      apiPets.edit(pet).then(() => {
         // updatedLoading();
         //setMessage("Se edito correctamento el cliente");
         history.push(`/customers/detail/${id}`);
@@ -40,7 +40,7 @@ function PetForm() {
     } else {
       console.log(pet);
       /*setLoading(true);*/
-      apiPet.add(pet).then(() => {
+      apiPets.add(pet).then(() => {
         //updatedLoading();
         history.push("/customers/list");
 
@@ -51,7 +51,7 @@ function PetForm() {
 
   useEffect(() => {
     if (id) {
-        apiPet.detail(id).then((data) => {
+        apiPets.detail(id).then((data) => {
         setCustomer(data);
         setInitialLoading(false);
       });
