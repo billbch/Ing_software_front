@@ -10,7 +10,7 @@ function BusinessRouter() {
       <Route exact path="/business/list" component={BusinessesList} />
       //<Route exact path="/business/add" component={BusinessForm} />
       <Route exact path="/business/edit/:id" component={BusinessForm} />
-      <Route exact path="/business/detail/:id" component={BusinessesDetails} />
+      <Route exact path="/business/detail" component={BusinessesDetails} />
     </React.Fragment>
   );
 }

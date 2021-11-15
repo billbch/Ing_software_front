@@ -13,6 +13,7 @@ import {
   } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { idText } from "typescript";
 import apiBusinesses from "../../api/api.businesses";
 import Title from "../../components/dashboard/title";
 import { Business } from "../../models/business";
@@ -20,8 +21,12 @@ import { Business } from "../../models/business";
   function BusinessList() {
     const [_a, setInitialLoading] = useState(true);
     const [_b, _c] = useState(false);
-    const [businesss, setBusinesss] = useState<Business[]>([]);
+    const [busineses, setBusinesss] = useState<Business[]>([]);
     const [_e, _f] = useState("");
+    const [bid, setBussines] = useState(
+      localStorage.getItem('bid')
+    );
+
   
     useEffect(() => {
         apiBusinesses.list().then((data) => {
@@ -29,6 +34,12 @@ import { Business } from "../../models/business";
         setInitialLoading(false);
       });
     }, []);
+
+    function recuperarid(id : number){
+
+      let idd : string=String(id)
+      localStorage.setItem('bid',idd)
+    }
   
   
     return (
@@ -95,7 +106,7 @@ import { Business } from "../../models/business";
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {businesss.map((business) => (
+                    {busineses.map((business) => (
                       <TableRow key={business.id}>
                       <TableCell>{business.id}</TableCell>
                       <TableCell>{business.businessName}</TableCell>
@@ -120,8 +131,10 @@ import { Business } from "../../models/business";
                         </TableCell>
                         <TableCell>
                           <Button
+                            onClick={()=> recuperarid(business.id)}
                             component={Link}
-                            to={`/business/detail/${business.id}`}
+                            to={`/business/detail`}
+                            
                             size={"small"}
                             variant="contained"
                             color="default"

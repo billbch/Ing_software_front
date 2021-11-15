@@ -14,46 +14,47 @@ import { Business } from "../../models/business";
 function BussinessesDetails() {
   const [initialLoading, setInitialLoading] = useState(true);
   const [business, setBusiness] = useState<Business>(new Business());
-  const { id } = useParams<{ id: string }>();
 
-	apiBussinesses.detail(id).then((data) => {
-		setBusiness(data);
-	});
+  let id:string=String(localStorage.getItem('bid'))
+
+  //console.log(business)
+
+	useEffect(() => {
+    if (id) {
+      apiBussinesses.detail(id).then((data) => {
+        setBusiness(data);
+        console.log(data)
+        //setInitialLoading(false);
+      });
+    }
+    
+  }, [id]);
+
+  if (business.result) {
   return (
     <React.Fragment>
-      <CustomBodyName>Mi Veterinaria</CustomBodyName>
+      <CustomBodyName>Detalles cliente</CustomBodyName>
       <CustomBodyDescription>
-		Aqui puedes visualizar y modificar información de tu negocio.
+        Se encarga de mostrar los detalles de un cliente
       </CustomBodyDescription>
 
       <CustomBody>
         <CustomCard>
           <CustomCardHeader>
-            <h3> Detalles de tu Veterinaria : {business.businessName} </h3>
+            <h3> Detalles del cliente :  {business.result.id} </h3>
           </CustomCardHeader>
           <CustomCardBody>
             <Grid container>
               <Grid item xs={12} sm={12} md={6}>
-                <h3> Detalles del Veterinaria: </h3>
-                <h5> Veterinaria: </h5>
-                <p>{business.businessName}</p>
-                <h5> Dirección: </h5>
-                <p> {business.address} </p>
-
-				<Button
-				  component={Link}
-				  to={`/business/edit/${business.id}`}
-				  size={"small"}
-				  variant="contained"
-				  color="inherit"
-				  style={{ width: "100px" }}
-				  startIcon={
-				    <span className="material-icons">edit</span>
-				  }
-				>
-				  Editar
-				</Button>
-				
+                <h3> RUC: {business.result.ruc} </h3>
+                <h3> Nombre de Veterinaria: {business.result.businessName} </h3>
+                <h3> Distrito: {business.result.district} </h3>
+                <h3> City: {business.result.city} </h3>
+                <h3> Address: {business.result.address} </h3>
+                <h3> Email: {business.result.email} </h3>
+                <h3> Contraseña: {business.result.password} </h3>
+                <h3> Calificacion: {business.result.score} </h3>
+                <h3> Descripcion: {business.result.description} </h3>
               </Grid>
             </Grid>
           </CustomCardBody>
@@ -61,6 +62,9 @@ function BussinessesDetails() {
       </CustomBody>
     </React.Fragment>
   );
+  } else {
+    return (<React.Fragment>Cargando</React.Fragment>)
+  }
 }
 
 export default BussinessesDetails;

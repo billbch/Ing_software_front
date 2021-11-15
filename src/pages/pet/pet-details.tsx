@@ -16,7 +16,7 @@ function PetDetails() {
   const [pet, setPet] = useState<Pet>(new Pet());
 
   let id:string=String(localStorage.getItem('ppid'))
-
+    console.log(id)
 
   useEffect(() => {
     if (id) {
@@ -26,6 +26,9 @@ function PetDetails() {
       });
     }
   }, [id]);
+
+
+  if (pet.result) {
 
   return (
     <React.Fragment>
@@ -59,6 +62,9 @@ function PetDetails() {
       </CustomBody>
     </React.Fragment>
   );
+  } else {
+    return (<React.Fragment>Cargando</React.Fragment>)
+  }
 }
 
 export default PetDetails;

@@ -9,4 +9,5 @@ export class Business {
     password: string;
     score: 0;
     description: string;
+  result: any;
 }

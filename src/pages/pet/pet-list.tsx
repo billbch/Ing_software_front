@@ -23,6 +23,8 @@ import { Pet } from "../../models/pet-form";
     const [pets, setPets] = useState<Pet[]>([]);
     const [_e, _f] = useState("");
   
+    
+
     useEffect(() => {
         apiPets.list().then((data) => {
         setPets(data);
@@ -117,7 +119,7 @@ import { Pet } from "../../models/pet-form";
                         <TableCell>
                           <Button
                             component={Link}
-                            to={`/pet/detail/${pet.id}`}
+                            to={`/pet/details`}
                             size={"small"}
                             variant="contained"
                             color="default"
