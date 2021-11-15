@@ -26,29 +26,6 @@ export const mainListItems = (
 export const secondaryListItems = (
   <div>
     <ListSubheader inset>Clientes</ListSubheader>
-    <ListItem
-      button
-      component={NavLink}
-      to={"/customers/list"}
-      activeClassName="Mui-selected"
-    >
-      <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary="Listar Clientes" />
-    </ListItem>
-
-    <ListItem
-      button
-      component={NavLink}
-      to={"/customers/add"}
-      activeClassName="Mui-selected"
-    >
-      <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary="Agregar Clientes" />
-    </ListItem>
 
     <ListItem
       button
@@ -71,19 +48,7 @@ export const secondaryListItems = (
       <ListItemIcon>
         <AssignmentIcon />
       </ListItemIcon>
-      <ListItemText primary="Listar Veterinarias" />
-    </ListItem>
-
-    <ListItem
-      button
-      component={NavLink}
-      to={"/customers/add"} //to change
-      activeClassName="Mui-selected"
-    >
-      <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary="Buscar Veterinaria" />
+      <ListItemText primary="Buscar Veterinarias" />
     </ListItem>
 
     <ListItem
@@ -108,6 +73,18 @@ export const secondaryListItems = (
         <AssignmentIcon />
       </ListItemIcon>
       <ListItemText primary="Listar Citas" />
+    </ListItem>
+
+    <ListItem
+      button
+      component={NavLink}
+      to={"/appointmentVet/list"} //to change
+      activeClassName="Mui-selected"
+    >
+      <ListItemIcon>
+        <AssignmentIcon />
+      </ListItemIcon>
+      <ListItemText primary="Listar Citas Vet" />
     </ListItem>
 
   </div>

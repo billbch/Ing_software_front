@@ -22,7 +22,9 @@ import { Pet } from "../../models/pet-form";
     const [_b, _c] = useState(false);
     const [pets, setPets] = useState<Pet[]>([]);
     const [_e, _f] = useState("");
-  
+    const [petid, setBussines] = useState(
+      localStorage.getItem('petid')
+    );
     
 
     useEffect(() => {
@@ -32,6 +34,11 @@ import { Pet } from "../../models/pet-form";
       });
     }, []);
   
+    function recuperarid(id : number){
+
+      let idd : string=String(id)
+      localStorage.setItem('petid',idd)
+    }
   
     return (
       <React.Fragment>
@@ -104,7 +111,7 @@ import { Pet } from "../../models/pet-form";
                         <TableCell>
                           <Button
                             component={Link}
-                            to={`/pet/edit/${pet.id}`}
+                            to={`/pet/edit`}
                             size={"small"}
                             variant="contained"
                             color="inherit"
@@ -118,6 +125,7 @@ import { Pet } from "../../models/pet-form";
                         </TableCell>
                         <TableCell>
                           <Button
+                            onClick={()=> recuperarid(pet.id)}
                             component={Link}
                             to={`/pet/details`}
                             size={"small"}

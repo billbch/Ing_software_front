@@ -15,7 +15,7 @@ function PetDetails() {
   const [initialLoading, setInitialLoading] = useState(true);
   const [pet, setPet] = useState<Pet>(new Pet());
 
-  let id:string=String(localStorage.getItem('ppid'))
+  let id:string=String(localStorage.getItem('petid'))
     console.log(id)
 
   useEffect(() => {
@@ -40,13 +40,11 @@ function PetDetails() {
       <CustomBody>
         <CustomCard>
           <CustomCardHeader>
-            <h3> Detalles del cliente : {pet.personProfileId} </h3>
+            <h3> Detalles del cliente : {pet.result.id} </h3>
           </CustomCardHeader>
           <CustomCardBody>
             <Grid container>
               <Grid item xs={12} sm={12} md={6}>
-                <h3> Detalles del cliente:{pet.result.id} </h3>
-                
                 <h5> Nombre:  {pet.result.name}</h5>
                 <h5> Apellido:  {pet.result.lastName}</h5>
                 <h5> Fecha de Nacimiento:  {pet.result.birthDate}</h5>

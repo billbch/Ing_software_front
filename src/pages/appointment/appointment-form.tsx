@@ -26,31 +26,23 @@ function AppointmentForm() {
     localStorage.getItem('bid')
   );
 
-  const { id } = useParams<{ id: string }>();
-
   function changeValueCustomer(
     event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
   ) {
     const { value, name } = event.target;
     setCustomer({ ...appointment, [name]: value });
-    localStorage.setItem('ppid',value)
-    localStorage.setItem('bid',value)
+  
 
   }
 
+  //Eliminar cuando esto sea guardado desde el login
+  localStorage.setItem('bid','2')
+  localStorage.setItem('ppid','1')
 
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    
     event.preventDefault();
-    if (id) {
-      //setLoading(true);
-      apiAppointment.edit(appointment).then(() => {
-        // updatedLoading();
-        //setMessage("Se edito correctamento el cliente");
-        history.push(`/appointment/detail/${id}`);
-        setCustomer(appointment);
-      });
-    } else {
       let bid: number=parseInt(String(localStorage.getItem('bid')))
       let ppid: number=parseInt(String(localStorage.getItem('ppid')))
 
@@ -63,12 +55,11 @@ function AppointmentForm() {
       apiAppointment.add(appointment).then(() => {
         //updatedLoading();
         history.push("/appointment/list");
-      localStorage.setItem('bid','2')
-      localStorage.setItem('ppid','1')
+
         //setMessage("Se agrego correctamento el cliente");
       });
     }
-  }
+  
 
   function updatedLoading() {
     setLoading(false);
@@ -76,29 +67,21 @@ function AppointmentForm() {
   }
 
   useEffect(() => {
-    if (id) {
-        apiAppointment.detail(id).then((data) => {
-        setCustomer(data);
-        setInitialLoading(false);
-      });
-    } else {
-      setInitialLoading(false);
-    }
-  }, [id]);
+    
+      
+  }, []);
 
   return (
     <React.Fragment>
       <CustomBodyName>
-        {id ? "Editar un cliente" : "Agregar un nuevo cliente"}
+        {"Agregar un nuevo cliente"}
       </CustomBodyName>
       <CustomBodyDescription>
-        {id
-          ? "Este componenete se encarga de editar un  cliente"
-          : "Este componenete se encarga de agregar un nuevo cliente"}
+        {"Este componenete se encarga de agregar un nuevo cliente"}
       </CustomBodyDescription>
       <CustomBody>
         <CustomMainForm
-          title={id ? "Edite su cliente" : "Agregue un nuevo cliente"}
+          title={ "Agregue un nuevo cliente"}
         >
           <form onSubmit={handleSubmit}>
             <React.Fragment>
