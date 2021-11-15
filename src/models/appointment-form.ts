@@ -1,11 +1,11 @@
 export class Appointment{
-    id:           number=0;
+    id:           number;
     createdAt:	    Date;
-    startTime:	   string="";
-    status:	      boolean;
-    endTime	:       string = "";
-    veteryname:	     string = "";
+    startTime:	   string;
+    status:	      boolean=false;
+    endTime:       string ="";
+    veteryname:	    string ="";
     productTypeName:	string ="";
-    personProfileId:	    number=0 ;
-    businessId:	      number=0 ;
+    personProfileId:	    number=1 ;
+    businessId:	      number=2 ;
     }

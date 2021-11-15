@@ -11,27 +11,44 @@ import {
     TableRow,
     Typography,
   } from "@material-ui/core";
+  import CustomBody from "../../components/body-custom/custom-body";
+  import CustomMainForm from "../../components/form/custom-main-form";
+  import CustomBodyDescription from "../../components/body-custom/custom-body-description";
   import React, { useEffect, useState } from "react";
+  import CustomTextField from "../../components/custom-text-field/custom-text-field";
   import { Link } from "react-router-dom";
   import apiAppointment from "../../api/api.appointment";
   import Title from "../../components/dashboard/title";
   import { Appointment } from "../../models/appointment-form";
+  import CustomBodyName from "../../components/body-custom/custom-body-name";
+  import { useHistory, useParams } from "react-router-dom";
   
   function AppointmentList() {
+
+
+    const history = useHistory();
     const [initialLoading, setInitialLoading] = useState(true);
     const [loading, setLoading] = useState(false);
     const [appointments, setCustomers] = useState<Appointment[]>([]);
     const [target, setTarget] = useState("");
+    const [appointment, setCustomer] = useState<Appointment>(new Appointment());
   
+    function changeValueCustomer(
+      event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+    ) {
+      const { value, name } = event.target;
+      setCustomer({ ...appointment, [name]: value });
+    }
+
     function changeRemove(
-      event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+      //event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
       id: number
     ) {
       const customer = appointments.find((x) => x.id === id);
   
       if (customer) {
         //Delete
-        setTarget(event.currentTarget.name);
+        //setTarget(event.currentTarget.name);
         setLoading(true);
         apiAppointment.delete(id).then(() => {
           setLoading(false);
@@ -41,6 +58,20 @@ import {
         });
       }
     }
+
+    function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+      event.preventDefault();
+      
+        console.log(appointment);
+        /*setLoading(true);*/
+        apiAppointment.add(appointment).then(() => {
+          //updatedLoading();
+          history.push("/customers/list");
+  
+          //setMessage("Se agrego correctamento el cliente");
+        });
+    }
+    
   
     useEffect(() => {
         apiAppointment.list().then((data) => {
@@ -105,8 +136,6 @@ import {
                       <TableCell>Nro</TableCell>
                       <TableCell>Fecha</TableCell>
                       <TableCell>Veterinaria</TableCell>
-                      <TableCell>Editar</TableCell>
-                      <TableCell>Detalle</TableCell>
                       <TableCell>Eliminar</TableCell>
                     </TableRow>
                   </TableHead>
@@ -114,38 +143,8 @@ import {
                     {appointments.map((appointment, index) => (
                       <TableRow key={appointment.id}>
                         <TableCell>{index + 1}</TableCell>
-                        <TableCell>{appointment.createdAt}</TableCell>
+                        <TableCell>{appointment.startTime}</TableCell>
                         <TableCell> {appointment.veteryname}</TableCell>
-                        <TableCell>
-                          <Button
-                            component={Link}
-                            to={`/customers/edit/${appointment.id}`}
-                            size={"small"}
-                            variant="contained"
-                            color="inherit"
-                            style={{ width: "100px" }}
-                            startIcon={
-                              <span className="material-icons">edit</span>
-                            }
-                          >
-                            Editar
-                          </Button>
-                        </TableCell>
-                        <TableCell>
-                          <Button
-                            component={Link}
-                            to={`/customers/detail/${appointment.id}`}
-                            size={"small"}
-                            variant="contained"
-                            color="default"
-                            style={{ width: "100px" }}
-                            startIcon={
-                              <span className="material-icons">info</span>
-                            }
-                          >
-                            Detalles
-                          </Button>
-                        </TableCell>
                         <TableCell>
                           <Button
                             size={"small"}
@@ -157,6 +156,7 @@ import {
                                 delete_outline
                               </span>
                             }
+                            onClick={()=> changeRemove(appointment.id)}
                           >
                             Eliminar
                           </Button>

@@ -7,6 +7,7 @@ import CustomersRouter from "./router/customers-router";
 import DashboardRouter from "./router/dashboard-router";
 import PersonprofileRouter from "./router/personprofile-route";
 import AppointmentRouter from "./router/appointment-route";
+import PetRouter from "./router/pet-router";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <MuiThemeProvider theme={themeMui}>
         <Switch>
           <Dashboard>
+            <PetRouter/>
             <AppointmentRouter/>
             <CustomersRouter />
             <PersonprofileRouter />

@@ -116,7 +116,7 @@ function ProfileSection() {
                           variant="h4"
                           className={classes.name}
                         >
-                          Henry Mendoza Puerta
+                          Bill Brandon Chavez
                         </Typography>
                       </Grid>
                       <Grid item>
