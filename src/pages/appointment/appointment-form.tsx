@@ -9,6 +9,7 @@ import CustomMainForm from "../../components/form/custom-main-form";
 import { useHistory, useParams } from "react-router-dom";
 import apiAppointment from "../../api/api.appointment";
 import { Appointment } from "../../models/appointment-form";
+import { Console } from "console";
 
 function AppointmentForm() {
   const history = useHistory();
@@ -18,6 +19,12 @@ function AppointmentForm() {
   const [initialLoading, setInitialLoading] = useState(true);
   const [message, setMessage] = useState("");
   const [appointment, setCustomer] = useState<Appointment>(new Appointment());
+  const [ppid, setppid] = useState(
+    localStorage.getItem('ppid')
+  );
+  const [bid, setbid] = useState(
+    localStorage.getItem('bid')
+  );
 
   const { id } = useParams<{ id: string }>();
 
@@ -26,7 +33,12 @@ function AppointmentForm() {
   ) {
     const { value, name } = event.target;
     setCustomer({ ...appointment, [name]: value });
+    localStorage.setItem('ppid',value)
+    localStorage.setItem('bid',value)
+
   }
+
+
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -35,16 +47,24 @@ function AppointmentForm() {
       apiAppointment.edit(appointment).then(() => {
         // updatedLoading();
         //setMessage("Se edito correctamento el cliente");
-        history.push(`/customers/detail/${id}`);
+        history.push(`/appointment/detail/${id}`);
         setCustomer(appointment);
       });
     } else {
-      console.log(appointment);
+      let bid: number=parseInt(String(localStorage.getItem('bid')))
+      let ppid: number=parseInt(String(localStorage.getItem('ppid')))
+
+      
+      appointment.businessId= bid
+      appointment.personProfileId= ppid
+      console.log(appointment)
+
       /*setLoading(true);*/
       apiAppointment.add(appointment).then(() => {
         //updatedLoading();
-        history.push("/customers/list");
-
+        history.push("/appointment/list");
+      localStorage.setItem('bid','2')
+      localStorage.setItem('ppid','1')
         //setMessage("Se agrego correctamento el cliente");
       });
     }
@@ -85,20 +105,29 @@ function AppointmentForm() {
               <Grid container spacing={3}>
                 <Grid item xs={12} sm={6}>
                   <CustomTextField
-                    value={appointment.id}
+                    value={appointment.startTime}
                     onChange={(event) => changeValueCustomer(event)}
                     required
-                    name="customerName"
-                    label="Nombres"
+                    name="startTime"
+                    label="Día/Mes/Año/Hora 24h"
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <CustomTextField
+                    value={appointment.veteryname}
+                    onChange={(event) => changeValueCustomer(event)}
+                    required
+                    name="veteryname"
+                    label="Veteryname"
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <CustomTextField
                     value={appointment.productTypeName}
-                    onChange={(event) => changeValueCustomer(event)}
+                    onChange={(event) => changeValueCustomer(event) }
                     required
-                    name="customerDirection"
-                    label="Dirección"
+                    name="productTypeName"
+                    label="ProductTypeName"
                   />
                 </Grid>
               </Grid>
@@ -116,7 +145,7 @@ function AppointmentForm() {
                   startIcon={<span className="material-icons">send</span>}
                   disabled={loading}
                 >
-                  {id ? "Editar" : "Agregar"}
+                  {"Agregar"}
                 </Button>
               </div>
             </React.Fragment>

@@ -42,6 +42,7 @@ function CustomersList() {
     }
   }
 
+
   useEffect(() => {
     apiCustomers.list().then((data) => {
       setCustomers(data);

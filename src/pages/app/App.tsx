@@ -9,12 +9,14 @@ import AppointmentRouter from "./router/appointment-route";
 import PetRouter from "./router/pet-router";
 import BusinessRouter from "./router/business-router";
 
+
 function App() {
   return (
     <Router>
       <MuiThemeProvider theme={themeMui}>
         <Switch>
           <Dashboard>
+            <PetRouter/>
             <AppointmentRouter/>
             <CustomersRouter />
             <PetRouter />

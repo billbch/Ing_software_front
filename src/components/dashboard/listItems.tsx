@@ -89,7 +89,7 @@ export const secondaryListItems = (
     <ListItem
       button
       component={NavLink}
-      to={"/customers/add"} //to change
+      to={`/appointment/add/`} //to change
       activeClassName="Mui-selected"
     >
       <ListItemIcon>
@@ -109,7 +109,6 @@ export const secondaryListItems = (
       </ListItemIcon>
       <ListItemText primary="Listar Citas" />
     </ListItem>
-  
 
   </div>
 );
