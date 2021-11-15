@@ -17,7 +17,12 @@ import { idText } from "typescript";
 import apiBusinesses from "../../api/api.businesses";
 import Title from "../../components/dashboard/title";
 import { Business } from "../../models/business";
+import CustomTextField from "../../components/custom-text-field/custom-text-field";
+
+
+
   
+
   function BusinessList() {
     const [_a, setInitialLoading] = useState(true);
     const [_b, _c] = useState(false);
@@ -26,7 +31,7 @@ import { Business } from "../../models/business";
     const [bid, setBussines] = useState(
       localStorage.getItem('bid')
     );
-
+    const[filter,setfilter]=useState("")
   
     useEffect(() => {
         apiBusinesses.list().then((data) => {
@@ -34,6 +39,12 @@ import { Business } from "../../models/business";
         setInitialLoading(false);
       });
     }, []);
+
+
+    function Filter(){
+
+      setBusinesss(busineses.filter((x)=>x.district==filter))
+    }
 
     function recuperarid(id : number){
 
@@ -88,6 +99,27 @@ import { Business } from "../../models/business";
               flexDirection: "column",
             }}
           >
+            <CustomTextField
+                    //value={appointment.startTime}
+    
+                    onChange={(event) => setfilter(event.target.value)}
+                    required
+                    name="startTime"
+                    label="Buscar"
+                  />
+                  <Button onClick={()=> Filter()}
+                            size={"small"}
+                            variant="contained"
+                            color="default"
+                            style={{ width: "100px" }}
+                            startIcon={
+                              <span className="material-icons">
+                                delete_outline
+                              </span>
+                            }
+                          >
+                            Buscar
+                          </Button>
             <React.Fragment>
               <Title>Lista de Mascotas</Title>
               <TableContainer component={Paper}>
