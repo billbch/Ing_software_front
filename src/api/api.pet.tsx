@@ -8,5 +8,4 @@ const apiPet = {
   delete: (id: number) => request.delete(`/v1/Pet/${id}`),
   detail: (id: string) => request.get<Pet>(`/v1/Pet/${id}`),
 };
-
 export default apiPet;

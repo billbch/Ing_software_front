@@ -16,11 +16,10 @@ function App() {
       <MuiThemeProvider theme={themeMui}>
         <Switch>
           <Dashboard>
-            <PetRouter/>
             <AppointmentRouter/>
             <CustomersRouter />
             <PetRouter />
-			<BusinessRouter />
+			      <BusinessRouter />
             <PersonprofileRouter />
             <DashboardRouter />
           </Dashboard>

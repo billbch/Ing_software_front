@@ -7,8 +7,8 @@ import CustomTextField from "../../components/custom-text-field/custom-text-fiel
 import CustomMainForm from "../../components/form/custom-main-form";
 
 import { useHistory, useParams } from "react-router-dom";
-import apiPets from "../../api/api.pets";
-import { Pet } from "../../models/pet";
+import apiPets from "../../api/api.pet";
+import { Pet } from "../../models/pet-form";
 
 function PetForm() {
   const history = useHistory();
@@ -122,3 +122,6 @@ function PetForm() {
 }
 
 export default PetForm;
+
+
+

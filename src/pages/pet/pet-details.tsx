@@ -14,7 +14,9 @@ import { Pet } from "../../models/pet-form";
 function PetDetails() {
   const [initialLoading, setInitialLoading] = useState(true);
   const [pet, setPet] = useState<Pet>(new Pet());
+
   let id:string=String(localStorage.getItem('ppid'))
+
 
   useEffect(() => {
     if (id) {

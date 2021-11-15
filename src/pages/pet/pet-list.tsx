@@ -13,9 +13,9 @@ import {
   } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import apiPets from "../../api/api.pets";
+import apiPets from "../../api/api.pet";
 import Title from "../../components/dashboard/title";
-import { Pet } from "../../models/pet";
+import { Pet } from "../../models/pet-form";
   
   function PetList() {
     const [_a, setInitialLoading] = useState(true);
