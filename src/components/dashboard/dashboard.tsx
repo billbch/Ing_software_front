@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
@@ -17,11 +17,15 @@ export default function Dashboard({ children }: Props) {
     const toggleDrawer = () => {
         setOpen(!open);
     };
+  
+    
 
+    if(localStorage.getItem("bid") === null && localStorage.getItem("ppid") === null){
+
+    
     return (
+        
         <Box style={{ display: 'flex' }}>
-            <Navbar open={open} toggleDrawer={toggleDrawer} />
-            <Sidebar open={open} toggleDrawer={toggleDrawer} />
             <Box
                 component='main'
                 style={{
@@ -42,4 +46,34 @@ export default function Dashboard({ children }: Props) {
             </Box>
         </Box>
     );
+    }
+    else{
+                return (
+        
+                    <Box style={{ display: 'flex' }}>
+                        <Navbar open={open} toggleDrawer={toggleDrawer} />
+                        <Sidebar open={open} toggleDrawer={toggleDrawer} />
+                        <Box
+                            component='main'
+                            style={{
+                                flexGrow: 1,
+                                height: '100vh',
+                                overflow: 'auto',
+                            }}
+                        >
+                            <div className={classes.appBarSpacer} />
+                            <Container maxWidth='lg' style={{ marginTop: '32px', marginBottom: '32px' }}>
+                                <Grid container spacing={3}>
+                                    {children}
+                                </Grid>
+                                <Box style={{ paddingTop: '32px' }}>
+                                    <Footer />
+                                </Box>
+                            </Container>
+                        </Box>
+                    </Box>
+                );
+
+            }
+            
 }

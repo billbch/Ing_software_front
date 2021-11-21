@@ -5,7 +5,7 @@ import IconButton from '@material-ui/core/IconButton';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import Divider from '@material-ui/core/Divider';
 import List from '@material-ui/core/List';
-import { mainListItems, secondaryListItems } from './listItems';
+import { mainListItems, PersonItems, BusinesItem } from './listItems';
 import useStyles from './styles/use-styles';
 import { useMediaQuery } from '@material-ui/core';
 import { useTheme } from '@material-ui/core/styles';
@@ -27,6 +27,7 @@ function Sidebar({ toggleDrawer, open }: Props) {
         }
     }, [matchUpMd]);*/
 
+    if(localStorage.getItem('bid')!=null){
     return (
         <Drawer
             /*variant='permanent'*/
@@ -45,9 +46,33 @@ function Sidebar({ toggleDrawer, open }: Props) {
             <Divider />
             <List>{mainListItems}</List>
             <Divider />
-            <List>{secondaryListItems}</List>
+            <List>{BusinesItem}</List>
         </Drawer>
     );
+        }else{
+            return (
+                <Drawer
+                    /*variant='permanent'*/
+                    /*variant={matchUpMd ? 'persistent' : 'temporary'}*/
+                    variant={matchUpMd ? 'permanent' : 'temporary'}
+                    classes={{
+                        paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
+                    }}
+                    open={open}
+                >
+                    <div className={classes.toolbarIcon}>
+                        <IconButton onClick={toggleDrawer}>
+                            <ChevronLeftIcon />
+                        </IconButton>
+                    </div>
+                    <Divider />
+                    <List>{mainListItems}</List>
+                    <Divider />
+                    <List>{PersonItems}</List>
+                </Drawer>
+            );
+
+        }
 }
 
 export default Sidebar;

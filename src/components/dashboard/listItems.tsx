@@ -6,7 +6,10 @@ import DashboardIcon from "@material-ui/icons/Dashboard";
 import AssignmentIcon from "@material-ui/icons/Assignment";
 import { NavLink } from "react-router-dom";
 
+
+
 export const mainListItems = (
+
   <div>
     <ListItem
       button
@@ -23,9 +26,42 @@ export const mainListItems = (
   </div>
 );
 
-export const secondaryListItems = (
+
+export const BusinesItem = (
   <div>
-    <ListSubheader inset>Clientes</ListSubheader>
+    <ListSubheader inset>Bienvenido</ListSubheader>
+
+    <ListItem
+      button
+      component={NavLink}
+      to={"/appointmentVet/list"} //to change
+      activeClassName="Mui-selected"
+    >
+      <ListItemIcon>
+        <AssignmentIcon />
+      </ListItemIcon>
+      <ListItemText primary="Listar Citas Vet" />
+    </ListItem>
+
+    <ListItem
+      button
+      component={NavLink}
+      to={"/vaccination/list"} //to change
+      activeClassName="Mui-selected"
+    >
+      <ListItemIcon>
+        <AssignmentIcon />
+      </ListItemIcon>
+      <ListItemText primary="Listar Vacunas" />
+    </ListItem>
+
+  </div>
+
+);
+
+export const PersonItems = (
+  <div>
+    <ListSubheader inset>Bienvenido</ListSubheader>
 
     <ListItem
       button
@@ -78,14 +114,14 @@ export const secondaryListItems = (
     <ListItem
       button
       component={NavLink}
-      to={"/appointmentVet/list"} //to change
+      to={"/vaccination/list"} //to change
       activeClassName="Mui-selected"
     >
       <ListItemIcon>
         <AssignmentIcon />
       </ListItemIcon>
-      <ListItemText primary="Listar Citas Vet" />
+      <ListItemText primary="Listar Vacunas" />
     </ListItem>
-
   </div>
+
 );

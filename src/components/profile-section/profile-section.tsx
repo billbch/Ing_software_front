@@ -24,6 +24,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { useTheme } from "@material-ui/core/styles";
 import useStyles from "./styles/use-styles";
+import { NavLink } from "react-router-dom";
 
 function ProfileSection() {
   const [open, setOpen] = React.useState(false);
@@ -53,6 +54,11 @@ function ProfileSection() {
     }
     prevOpen.current = open;
   }, [open]);
+
+  function  eliminarid(){
+    localStorage.removeItem('bid')
+    localStorage.removeItem('ppid')
+  }
 
   return (
     <React.Fragment>
@@ -110,41 +116,13 @@ function ProfileSection() {
                   <CardContent className={classes.cardContent}>
                     <Grid container direction="column" spacing={0}>
                       <Grid item className={classes.flex}>
-                        <Typography variant="h4">Buen Dia,</Typography>
-                        <Typography
-                          component="span"
-                          variant="h4"
-                          className={classes.name}
-                        >
-                          Bill Brandon Chavez
-                        </Typography>
                       </Grid>
                       <Grid item>
                         <Typography variant="subtitle2">
-                          Administrador
+                          UPC
                         </Typography>
                       </Grid>
                     </Grid>
-                    <OutlinedInput
-                      className={classes.searchControl}
-                      id="input-search-profile"
-                      value={value}
-                      onChange={(e) => setValue(e.target.value)}
-                      placeholder="Search profile options"
-                      startAdornment={
-                        <InputAdornment position="start">
-                          <SearchIcon
-                            style={{ fontSize: "1.3rem" }}
-                            className={classes.startAdornment}
-                          />
-                        </InputAdornment>
-                      }
-                      aria-describedby="search-helper-text"
-                      inputProps={{
-                        "aria-label": "weight",
-                      }}
-                      labelWidth={0}
-                    />
                     <Divider />
                     <PerfectScrollbar className={classes.ScrollHeight}>
                       <Divider />
@@ -170,8 +148,12 @@ function ProfileSection() {
                           className={classes.listItem}
                           button
                           selected={selectedIndex === 4}
+                          component={NavLink}
+                          to={"/login"}
+                          onClick={()=> eliminarid()}
+                          
                         >
-                          <ListItemIcon>
+                          <ListItemIcon >
                             <ExitToAppIcon style={{ fontSize: "1.3rem" }} />
                           </ListItemIcon>
                           <ListItemText
