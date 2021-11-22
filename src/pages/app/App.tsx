@@ -11,6 +11,7 @@ import BusinessRouter from "./router/business-router";
 import AppointmentVetRouter from "./router/appointmentVet-route";
 import LoingRouter from "./router/login-router";
 import VaccinationRouter from "./router/vaccination-router";
+import RegisterRouter from "./router/register-router";
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Switch>
           <Dashboard>
             <LoingRouter/>
+			<RegisterRouter />
             <AppointmentVetRouter/>
             <AppointmentRouter/>
             <CustomersRouter />
