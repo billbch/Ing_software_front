@@ -91,6 +91,19 @@ import { Pet } from "../../models/pet-form";
               <TableContainer component={Paper}>
                 <Table size="small">
                   <TableHead>
+                  <Button
+                            component={Link}
+                            to={`/pet/add`}
+                            size={"small"}
+                            variant="contained"
+                            color="inherit"
+                            style={{ width: "250px" }}
+                            startIcon={
+                              <span className="material-icons">edit</span>
+                            }
+                          >
+                            Añadir nueva mascota
+                          </Button>
                     <TableRow>
                       <TableCell>ID</TableCell>
                       <TableCell>Nombre</TableCell>
