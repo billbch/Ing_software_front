@@ -29,7 +29,7 @@ function Registerform() {
     apiRegister.add(register).then((data) => {
         
         console.log("impresion data",data)
-        history.push("/dashboard");
+          history.push("/login");
     });
   }
 

@@ -7,10 +7,13 @@ import { Response_login } from "../../models/response_login";
 import { Link, useHistory, useParams } from "react-router-dom";
 import apiLogin from "../../api/api.login";
 import { Login } from "../../models/login-form";
+import VpnKeyOutlinedIcon from '@material-ui/icons/VpnKeyOutlined';
 
 function Loginform() {
   const history = useHistory();
-
+  if (localStorage.getItem('ppid') || localStorage.getItem('bid')) {
+    history.push('dashboard');
+  }
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [initialLoading, setInitialLoading] = useState(true);
@@ -115,6 +118,16 @@ function Loginform() {
                   disabled={loading}
                 >
                   { "Ingresar"}
+                </Button>
+                <Button
+                  component={Link}
+                  to={`/register`}
+                  variant="outlined"
+                  color={"primary"}
+                  startIcon={<VpnKeyOutlinedIcon />}
+                  disabled={loading}
+                >
+                  {"Registro"}
                 </Button>
               </div>
             </React.Fragment>
