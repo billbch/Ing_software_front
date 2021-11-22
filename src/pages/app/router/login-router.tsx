@@ -6,6 +6,7 @@ function LoingRouter() {
   return (
     <React.Fragment>
       <Route exact path="/login" component={LoginForm} />
+      <Route exact path="/" component={LoginForm} />
     </React.Fragment>
   );
 }
