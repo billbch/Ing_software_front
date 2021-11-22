@@ -90,18 +90,6 @@ export const PersonItems = (
     <ListItem
       button
       component={NavLink}
-      to={`/appointment/add/`} //to change
-      activeClassName="Mui-selected"
-    >
-      <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary="Agregar Cita" />
-    </ListItem>
-
-    <ListItem
-      button
-      component={NavLink}
       to={"/appointment/list"} //to change
       activeClassName="Mui-selected"
     >

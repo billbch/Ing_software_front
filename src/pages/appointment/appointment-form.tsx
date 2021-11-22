@@ -75,14 +75,14 @@ function AppointmentForm() {
   return (
     <React.Fragment>
       <CustomBodyName>
-        {"Agregar un nuevo cliente"}
+        {"Agregar una nueva cita"}
       </CustomBodyName>
       <CustomBodyDescription>
-        {"Este componenete se encarga de agregar un nuevo cliente"}
+        {"Este componenete se encarga de agregar una nueva cita"}
       </CustomBodyDescription>
       <CustomBody>
         <CustomMainForm
-          title={ "Agregue un nuevo cliente"}
+          title={ "Agregue una nueva cita"}
         >
           <form onSubmit={handleSubmit}>
             <React.Fragment>
