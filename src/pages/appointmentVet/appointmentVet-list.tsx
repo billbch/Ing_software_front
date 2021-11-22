@@ -44,18 +44,18 @@ const theme = createMuiTheme({palette: {primary: red, secondary: green, error: r
   );
 
   useEffect(() => {
+    let user: number=parseInt(String(localStorage.getItem('bid')));
+    console.log(user);
     apiAppointment.list().then((data) => {
-      //console.log(data);
-      setApps(data);
+      //setApps(data);
       setInitialLoading(false);
-      let user: number=parseInt(String(localStorage.getItem('bid')))
-      setApps(appointments.filter((x) => x.businessId == user));
+      setApps(data.filter((x) => x.businessId == user));
     });
     apiPP.list().then((data) => {
       setPP(data);
       setInitialLoading(false);
       //console.log(PP);
-      people();
+      //people();
     });
     apiPet.list().then((data) => {
       setPets(data);
@@ -63,7 +63,7 @@ const theme = createMuiTheme({palette: {primary: red, secondary: green, error: r
       fillPets();
       //console.log(petIds);
     });
-  },[perNames]);
+  },[]);
 
   function UpStatus(app:Appointment){
     if (app.status == true) {
