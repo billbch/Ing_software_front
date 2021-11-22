@@ -161,7 +161,6 @@ const theme = createMuiTheme({palette: {primary: lightGreen, secondary: red, err
                       <TableCell>Ciudad</TableCell>
                       <TableCell>Direccion</TableCell>
                       <TableCell>Score</TableCell>
-                      <TableCell>Editar</TableCell>
                       <TableCell>Detalles</TableCell>
                       <TableCell>Agendar Cita</TableCell>
                     </TableRow>
@@ -175,21 +174,6 @@ const theme = createMuiTheme({palette: {primary: lightGreen, secondary: red, err
                       <TableCell>{business.city}</TableCell>
                       <TableCell>{business.address}</TableCell>
                       <TableCell>{business.score}</TableCell>
-                        <TableCell>
-                          <Button
-                            component={Link}
-                            to={`/business/edit/${business.id}`}
-                            size={"small"}
-                            variant="contained"
-                            color="inherit"
-                            style={{ width: "100px" }}
-                            startIcon={
-                              <span className="material-icons">edit</span>
-                            }
-                          >
-                            Editar
-                          </Button>
-                        </TableCell>
                         <TableCell>
                           <Button
                             onClick={()=> recuperarid(business.id)}
