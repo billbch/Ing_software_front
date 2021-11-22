@@ -11,6 +11,7 @@ import apiPets from "../../api/api.pet";
 import { Pet } from "../../models/pet-form";
 
 function PetForm() {
+  /*
   const history = useHistory();
 
   const setOpen = useState(false)[1];
@@ -39,7 +40,7 @@ function PetForm() {
       });
     } else {
       console.log(pet);
-      /*setLoading(true);*/
+      /*setLoading(true);
       apiPets.add(pet).then(() => {
         //updatedLoading();
         history.push("/customers/list");
@@ -119,9 +120,10 @@ function PetForm() {
       </CustomBody>
     </React.Fragment>
   );
+  */
 }
 
-export default PetForm;
+export default PetForm; 
 
 
 
