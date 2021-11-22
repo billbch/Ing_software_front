@@ -43,13 +43,14 @@ function AppointmentForm() {
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     
     event.preventDefault();
-      let bid: number=parseInt(String(localStorage.getItem('bid')))
+      let bid: number=parseInt(String(localStorage.getItem('ext_bid')))
       let ppid: number=parseInt(String(localStorage.getItem('ppid')))
 
       
-      appointment.businessId= bid
-      appointment.personProfileId= ppid
-      console.log(appointment)
+      appointment.businessId= bid;
+      appointment.personProfileId= ppid;
+      appointment.status = false;
+      console.log(appointment);
 
       /*setLoading(true);*/
       apiAppointment.add(appointment).then(() => {
