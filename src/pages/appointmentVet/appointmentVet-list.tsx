@@ -63,7 +63,7 @@ const theme = createMuiTheme({palette: {primary: red, secondary: green, error: r
       fillPets();
       //console.log(petIds);
     });
-  },[]);
+  },[petIds]);
 
   function UpStatus(app:Appointment){
     if (app.status == true) {
@@ -72,9 +72,10 @@ const theme = createMuiTheme({palette: {primary: red, secondary: green, error: r
     apiAppointment.edit(app).then(() => {
       setLoading(false);
     });
+    let user: number=parseInt(String(localStorage.getItem('bid')));
     apiAppointment.list().then((data) => {
       //console.log(data);
-      setApps(data);
+      setApps(data.filter((x) => x.businessId == user));
       setInitialLoading(false);
     });
   }
