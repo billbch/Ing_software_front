@@ -18,14 +18,17 @@ import apiBusinesses from "../../api/api.businesses";
 import Title from "../../components/dashboard/title";
 import { Business } from "../../models/business";
 import CustomTextField from "../../components/custom-text-field/custom-text-field";
+import PetsTwoToneIcon from '@material-ui/icons/PetsTwoTone';
+import CancelTwoToneIcon from '@material-ui/icons/CancelTwoTone';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { red, green, lightGreen } from '@material-ui/core/colors'
 
-
-
-  
+const theme = createMuiTheme({palette: {primary: lightGreen, secondary: red, error: red,},});
 
   function BusinessList() {
     const [_a, setInitialLoading] = useState(true);
     const [_b, _c] = useState(false);
+    const [filt, setSearch] = useState(true);
     const [busineses, setBusinesss] = useState<Business[]>([]);
     const [_e, _f] = useState("");
     const [bid, setBussines] = useState(
@@ -40,10 +43,22 @@ import CustomTextField from "../../components/custom-text-field/custom-text-fiel
       });
     }, []);
 
+    function set_ext_bid(id : number) {
+      let idd : string=String(id)
+      localStorage.setItem('ext_bid',idd)
+    }
 
     function Filter(){
+      setBusinesss(busineses.filter((x)=>x.district==filter));
+      setSearch(false);
+    }
 
-      setBusinesss(busineses.filter((x)=>x.district==filter))
+    function reset(){
+      apiBusinesses.list().then((data) => {
+        setBusinesss(data);
+        setInitialLoading(false);
+      });
+      setSearch(true);
     }
 
     function recuperarid(id : number){
@@ -68,7 +83,7 @@ import CustomTextField from "../../components/custom-text-field/custom-text-fiel
             <Divider />
   
             <Typography style={{ marginTop: "10px" }} variant="body2">
-              Listar Mascotas
+              Lista Veterinarias
             </Typography>
           </Paper>
         </Grid>
@@ -108,20 +123,34 @@ import CustomTextField from "../../components/custom-text-field/custom-text-fiel
                     label="Buscar"
                   />
                   <Button onClick={()=> Filter()}
-                            size={"small"}
-                            variant="contained"
-                            color="default"
-                            style={{ width: "100px" }}
-                            startIcon={
-                              <span className="material-icons">
-                                delete_outline
-                              </span>
-                            }
-                          >
-                            Buscar
-                          </Button>
+                      size={"small"}
+                      variant="contained"
+                      color="default"
+                      style={{ width: "150px" }}
+                      startIcon={
+                        <span className="material-icons">
+                          delete_outline
+                        </span>
+                      }
+                  >
+                    Buscar
+                  </Button>
+                  <MuiThemeProvider theme={theme}>
+                  <Button onClick={()=> reset()}
+                      size={"small"}
+                      variant="outlined"
+                      color="secondary"
+                      style={{ width: "150px" }}
+                      disabled = {filt}
+                      startIcon={
+                        <CancelTwoToneIcon/>
+                      }
+                  >
+                    Cancelar
+                  </Button>
+                  </MuiThemeProvider>
             <React.Fragment>
-              <Title>Lista de Mascotas</Title>
+              <Title>Lista de Veterinarias</Title>
               <TableContainer component={Paper}>
                 <Table size="small">
                   <TableHead>
@@ -134,7 +163,7 @@ import CustomTextField from "../../components/custom-text-field/custom-text-fiel
                       <TableCell>Score</TableCell>
                       <TableCell>Editar</TableCell>
                       <TableCell>Detalles</TableCell>
-                      <TableCell>Eliminar</TableCell>
+                      <TableCell>Agendar Cita</TableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
@@ -170,7 +199,7 @@ import CustomTextField from "../../components/custom-text-field/custom-text-fiel
                             size={"small"}
                             variant="contained"
                             color="default"
-                            style={{ width: "100px" }}
+                            style={{ width: "110px" }}
                             startIcon={
                               <span className="material-icons">info</span>
                             }
@@ -179,19 +208,22 @@ import CustomTextField from "../../components/custom-text-field/custom-text-fiel
                           </Button>
                         </TableCell>
                         <TableCell>
+                        <MuiThemeProvider theme={theme}>
                           <Button
+                            onClick={()=> set_ext_bid(business.id)}
+                            component={Link}
+                            to={`/appointment/add/`}
                             size={"small"}
-                            variant="contained"
-                            color="default"
-                            style={{ width: "100px" }}
+                            variant="outlined"
+                            color="primary"
+                            style={{ width: "90px" }}
                             startIcon={
-                              <span className="material-icons">
-                                delete_outline
-                              </span>
+                              <PetsTwoToneIcon />
                             }
                           >
-                            Eliminar
+                            Cita
                           </Button>
+                        </MuiThemeProvider>
                         </TableCell>
                       </TableRow>
                     ))}
