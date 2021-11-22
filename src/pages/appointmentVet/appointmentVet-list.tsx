@@ -48,6 +48,8 @@ const theme = createMuiTheme({palette: {primary: red, secondary: green, error: r
       //console.log(data);
       setApps(data);
       setInitialLoading(false);
+      let user: number=parseInt(String(localStorage.getItem('bid')))
+      setApps(appointments.filter((x) => x.businessId == user));
     });
     apiPP.list().then((data) => {
       setPP(data);
