@@ -44,16 +44,18 @@ const theme = createMuiTheme({palette: {primary: red, secondary: green, error: r
   );
 
   useEffect(() => {
+    let user: number=parseInt(String(localStorage.getItem('bid')));
+    console.log(user);
     apiAppointment.list().then((data) => {
-      //console.log(data);
-      setApps(data);
+      //setApps(data);
       setInitialLoading(false);
+      setApps(data.filter((x) => x.businessId == user));
     });
     apiPP.list().then((data) => {
       setPP(data);
       setInitialLoading(false);
       //console.log(PP);
-      people();
+      //people();
     });
     apiPet.list().then((data) => {
       setPets(data);
@@ -61,7 +63,7 @@ const theme = createMuiTheme({palette: {primary: red, secondary: green, error: r
       fillPets();
       //console.log(petIds);
     });
-  },[perNames]);
+  },[]);
 
   function UpStatus(app:Appointment){
     if (app.status == true) {
@@ -110,9 +112,12 @@ const theme = createMuiTheme({palette: {primary: red, secondary: green, error: r
   function fillPets() {
     let vals:number[] = [];
     for (let i = 0; i < appointments.length; i++) {
-      let pn = pets.filter((x) => x.personProfileId == appointments[i].personProfileId);
-      //console.log(vals);
-      vals.push(pn[0].id);
+      let pn:Pet[] = pets.filter((x) => x.personProfileId == appointments[i].personProfileId);
+      if (pn[0] != null){
+        console.log(pn[0].id);
+        let n:number = pn[0].id;
+        vals.push(n);
+      } else {vals.push(1);}
     }
     //console.log(vals);
     setPetIds(vals);
@@ -149,7 +154,6 @@ const theme = createMuiTheme({palette: {primary: red, secondary: green, error: r
                       <TableCell>Nro</TableCell>
                       <TableCell>Fecha</TableCell>
                       <TableCell>Veterinaria</TableCell>
-                      <TableCell>Dueño</TableCell>
                       <TableCell>Mascota</TableCell>
                       <TableCell>Estado</TableCell>
                       <TableCell>Eliminar</TableCell>
@@ -161,7 +165,6 @@ const theme = createMuiTheme({palette: {primary: red, secondary: green, error: r
                         <TableCell>{index + 1}</TableCell>
                         <TableCell>{appointment.startTime}</TableCell>
                         <TableCell>{appointment.veteryname}</TableCell>
-                        <TableCell>{perNames[index]}</TableCell>
                         <TableCell>
                           <Button onClick={()=> setpetId(petIds[index])}     
                             component={Link}
